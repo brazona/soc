@@ -3,7 +3,7 @@
   "name": "branch_default_rule",
   "target": "branch",
   "source_type": "Repository",
-  "source": "brazona/trg",
+  "source": "brazona/soc",
   "enforcement": "active",
   "conditions": {
     "ref_name": {
