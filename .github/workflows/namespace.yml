@@ -21,19 +21,19 @@ jobs:
       github_ref_name: ${{github.ref_name}}
   #Publica o arquivo 
   deploy-env:
-      name: Deploy Files
-      permissions: write-all
-      uses: brazona/cop/.github/workflows/pipeline-deploy.yml@main
-      needs: [info-environment]
-      secrets:
-        PIPELINE_TOKEN: ${{ secrets.PIPELINE_TOKEN }}
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      with:
-        environment_name_field: ${{needs.info-environment.outputs.github_env_file_field}}
-        environment_name: ${{needs.info-environment.outputs.environment_name }}
-        app_name: soc
-        github_repository: brazona/soc 
-        type_env: env  
+    name: Deploy Files
+    needs: [info-environment]
+    permissions: write-all
+    uses: brazona/cop/.github/workflows/pipeline-deploy.yml@main
+    secrets:
+      PIPELINE_TOKEN: ${{ secrets.PIPELINE_TOKEN }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+    with:
+      environment_name_field: ${{needs.info-environment.outputs.github_env_file_field}}
+      environment_name: ${{needs.info-environment.outputs.environment_name }}
+      app_name: soc
+      github_repository: brazona/soc 
+      type_env: env  
   deploy:
     name: Pipeline Deploy
     needs: [info-environment,deploy-env]
