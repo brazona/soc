@@ -1,0 +1,33 @@
+name: Pipeline Namespace
+on:
+  pull_request:
+    paths:
+      - 'app/namespace/**'
+      - '.github/workflows/namespace.yml'   
+    branches:
+      - 'main'
+      - 'develop'
+      - 'hotfix/**'
+      - 'release/**'
+  workflow_dispatch:
+jobs:
+  info-environment:
+    name: Identifying the Environment
+    permissions: write-all
+    uses: brazona/pgc/.github/workflows/identifier.yml@main
+    with:
+      github_base_ref: ${{github.base_ref}}
+      github_event_name: ${{github.event_name }}
+      github_ref_name: ${{github.ref_name}}
+  deploy:
+    name: Pipeline Deploy
+    needs: [info-environment]
+    permissions: write-all
+    uses: brazona/pgc/.github/workflows/pipeline-deploy.yml@main
+    secrets:
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+    with:
+      environment_name: ${{needs.info-environment.outputs.environment_name}}
+      path_app: app/namespace
+      docker_image_tag: 'N/A'  
+          
