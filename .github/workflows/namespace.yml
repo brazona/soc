@@ -30,4 +30,5 @@ jobs:
       environment_name: ${{needs.info-environment.outputs.environment_name}}
       path_app: app/namespace
       docker_image_tag: 'N/A'  
+      environment_variable_name: ${{needs.info-environment.outputs.github_env_file_field}}
           
