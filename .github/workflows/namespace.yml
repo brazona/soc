@@ -1,4 +1,4 @@
-name: Pipeline Namespace
+name: Pipeline Deploy Namespace
 on:
   pull_request:
     paths:
