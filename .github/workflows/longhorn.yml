@@ -1,21 +1,20 @@
-name: Pipeline Deploy Namespace
+name: Pipeline Deploy LongHorn
 on:
   pull_request:
     paths:
-      - 'app/namespace/**'
-      - '.github/workflows/namespace.yml'   
+      - 'app/longhorn/**'
+      - '.github/workflows/longhorn.yml'   
     branches:
       - 'main'
       - 'develop'
       - 'hotfix/**'
       - 'release/**'
-
   push:
     paths:
-      - 'app/namespace/**'
-      - '.github/workflows/namespace.yml'
+      - 'app/longhorn/**'
+      - '.github/workflows/longhorn.yml'
     branches:
-      - 'main'      
+      - 'main'     
   workflow_dispatch:
 jobs:
   info-environment:
@@ -50,7 +49,7 @@ jobs:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
     with:
       environment_name: ${{needs.info-environment.outputs.environment_name}}
-      path_app: app/namespace
+      path_app: app/longhorn
       docker_image_tag: 'N/A'  
       environment_variable_name: ${{needs.info-environment.outputs.github_env_file_field}}
           
