@@ -9,6 +9,13 @@ on:
       - 'develop'
       - 'hotfix/**'
       - 'release/**'
+
+  push:
+    paths:
+      - 'app/namespace/**'
+      - '.github/workflows/namespace.yml'
+    branches:
+      - 'main'      
   workflow_dispatch:
 jobs:
   info-environment:

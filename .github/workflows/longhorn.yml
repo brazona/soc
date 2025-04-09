@@ -9,6 +9,12 @@ on:
       - 'develop'
       - 'hotfix/**'
       - 'release/**'
+  push:
+    paths:
+      - 'app/longhorn/**'
+      - '.github/workflows/longhorn.yml'
+    branches:
+      - 'main'     
   workflow_dispatch:
 jobs:
   info-environment:
